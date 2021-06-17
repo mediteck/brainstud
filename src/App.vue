@@ -2,12 +2,11 @@
   <div class="container" id="app">
     <div class="header">
       <div id="nav">
-        <img
-          alt="Brainstud logo"
-          src="./assets/Logo_Brainstud_horizontaal.png"
-        />
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/"
+          ><img
+            alt="Brainstud logo"
+            src="./assets/Logo_Brainstud_horizontaal.png"
+        /></router-link>
       </div>
     </div>
     <div class="main">
@@ -47,7 +46,7 @@ body {
   background: #f0f2ff;
   height: 100%;
   display: block;
-  padding: 0;
+  padding: 0 15px;
   margin: 0;
 
   font-family: Eina;
