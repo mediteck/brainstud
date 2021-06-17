@@ -11,6 +11,7 @@
       :totalSteps="questions.length"
       :question="questions[progress]"
       v-on:next-question="progress++"
+      v-if="questions.length > 0"
     />
   </div>
 </template>
@@ -31,33 +32,10 @@ export default {
     Question,
   },
   created: function () {
-    while (this.questions.length < 5) {
-      this.questions = [
-        ...this.questions,
-        {
-          id: 138714,
-          answer: "the Mississippi",
-          question:
-            "For some 2,300 miles, this \"Ol' Man River\" just keeps rollin' along " +
-            this.questions.length,
-          value: 200,
-          airdate: "2011-09-20T12:00:00.000Z",
-          created_at: "2015-01-22T02:25:40.235Z",
-          updated_at: "2015-01-22T02:25:40.235Z",
-          category_id: 13530,
-          game_id: 3715,
-          invalid_count: null,
-          category: {
-            id: 13530,
-            title: "stately rivers",
-            created_at: "2014-02-14T02:07:28.163Z",
-            updated_at: "2014-02-14T02:07:28.163Z",
-            clues_count: 15,
-          },
-        },
-      ];
-      console.log();
-    }
+    const url = "https://jservice.io/api/random?count=5";
+    this.axios.get(url).then((response) => {
+      this.questions = response.data;
+    });
   },
 };
 </script>
