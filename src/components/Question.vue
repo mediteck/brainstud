@@ -21,6 +21,9 @@
       <div class="incorrect" v-show="answered && !correct">
         is incorrect. The answer was {{ question.answer }}
       </div>
+      <div v-show="currentStep == totalSteps && answered" class="score">
+        Your final score is: {{ score }}
+      </div>
     </div>
 
     <div class="actions">
@@ -34,7 +37,7 @@
         Give answer
       </button>
       <button
-        v-show="answered && currentStep < 5"
+        v-show="answered && currentStep < totalSteps"
         class="button button-primary"
         id="next-question"
         @click="nextQuestion()"
@@ -55,6 +58,7 @@ export default {
       answered: false,
       correct: false,
       answer: "",
+      score: 0,
     };
   },
   components: {
@@ -65,10 +69,19 @@ export default {
     currentStep: Number,
     totalSteps: Number,
   },
+  mounted: function () {
+    console.log(this.question.answer);
+  },
+  watch: {
+    question: function (newVal) {
+      console.log(newVal.answer);
+    },
+  },
   methods: {
     checkAnswer: function () {
       this.correct = this.answer === this.question.answer;
       this.answered = true;
+      if (this.correct) this.score++;
     },
     nextQuestion: function () {
       this.answered = false;
