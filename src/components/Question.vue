@@ -23,6 +23,12 @@
       </div>
       <div v-show="currentStep == totalSteps && answered" class="score">
         Your final score is: {{ score }}
+
+        <br />
+        <br />
+        <router-link to="/" class="button button-primary"
+          >Homepage!</router-link
+        >
       </div>
     </div>
 
